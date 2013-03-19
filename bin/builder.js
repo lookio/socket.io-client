@@ -89,9 +89,14 @@ var baseTransports = {
  * If doing a node build for server-side client, this wrapper is NOT included.
  * @api private
  */
-var wrapperPre = "\nvar io = ('undefined' === typeof module ? {} : module.exports);\n(function() {\n";
 
-var wrapperPost = "\n})();";
+// + Changed by ethan to support socket.io with custom namespace.
+//var wrapperPre = "\nvar io = ('undefined' === typeof module ? {} : module.exports);\n(function() {\n";
+var wrapperPre = "\nvar LPMobile = LPMobile || {};\n(function(){\nvar io = ('object' === typeof module ? module.exports : (LPMobile.io = {}));\n(function() {\n";
+
+//var wrapperPost = "\n})();";
+var wrapperPost = "\n})();\n})();";
+// -
 
 
 /**

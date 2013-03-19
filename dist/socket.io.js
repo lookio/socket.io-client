@@ -1,6 +1,8 @@
 /*! Socket.IO.js build:0.9.11, development. Copyright(c) 2011 LearnBoost <dev@learnboost.com> MIT Licensed */
 
-var io = ('undefined' === typeof module ? {} : module.exports);
+var LPMobile = LPMobile || {};
+(function(){
+var io = ('object' === typeof module ? module.exports : (LPMobile.io = {}));
 (function() {
 
 /**
@@ -104,7 +106,10 @@ var io = ('undefined' === typeof module ? {} : module.exports);
     return socket.of(uri.path.length > 1 ? uri.path : '');
   };
 
-})('object' === typeof module ? module.exports : (this.io = {}), this);
+// + Changed by ethan to support socket.io with custom namespace.
+//})('object' === typeof module ? module.exports : (this.io = {}), this);
+})('object' === typeof module ? module.exports : LPMobile.io, this);
+// -
 /**
  * socket.io
  * Copyright(c) 2011 LearnBoost <dev@learnboost.com>
@@ -3865,7 +3870,5 @@ var swfobject=function(){var D="undefined",r="object",S="Shockwave Flash",W="Sho
   , this
 );
 
-if (typeof define === "function" && define.amd) {
-  define([], function () { return io; });
-}
+})();
 })();
